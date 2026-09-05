@@ -4,4 +4,8 @@ const router = Router();
 
 router.get("/", controller.homeGet);
 
+router.get("/info", controller.infoGet);
+
+
+
 module.exports = router;

@@ -4,6 +4,7 @@ const app = express();
 const path = require("node:path");
 const router = require("./routes/router");
 
+app.use('/css',express.static('public' +'/css'));
 app.set("views", path.join(__dirname, "views"));
 app.set("view engine", "ejs");
 app.use(express.urlencoded({ extended: true }));
