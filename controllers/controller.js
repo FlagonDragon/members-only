@@ -14,9 +14,31 @@ async function infoGet(req, res) {
 
 };
 
+function signUpGet(req, res) {
+
+    res.render("signUpView");
+
+};
+
+async function signUpPost(req, res) {
+
+    const { fullname, username } = req.body;
+
+    await db.insertUser(fullname, username);
+
+    const data = await db.getData();
+
+    console.log(data);
+
+    res.redirect("/");
+
+};
+
 
 
 module.exports = {
     homeGet,
-    infoGet
+    infoGet,
+    signUpGet,
+    signUpPost
 };
