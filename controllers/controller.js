@@ -1,5 +1,6 @@
 const db = require("../db/queries");
 const bcrypt = require("bcryptjs");
+const { validationResult } = require("express-validator");
 
 function homeGet(req, res) {
 
@@ -24,6 +25,18 @@ function signUpGet(req, res) {
 async function signUpPost(req, res) {
 
     const { fullname, username, password } = req.body;
+
+    const result = validationResult(req);
+    
+    if (!result.isEmpty()) {
+
+        console.log(result);
+                
+        res.send(result.errors[0].msg);
+
+        return;
+        
+    }
 
     const hashedPassword = await bcrypt.hash(password, 10);
 
