@@ -9,3 +9,6 @@ INSERT INTO userbase (fullname, username, membership)
 VALUES 
   ('user1', 'user1@email.com', 'no'),
   ('user2', 'user2@email.com', 'no');
+
+ALTER TABLE userbase
+ADD password VARCHAR ( 255 );

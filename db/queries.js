@@ -8,11 +8,11 @@ async function getData() {
 
 };
 
-async function insertUser(fullname, username) {
+async function insertUser(fullname, username, password) {
 
-await pool.query(`INSERT INTO userbase (fullname, username, membership)
+await pool.query(`INSERT INTO userbase (fullname, username, password, membership)
 VALUES 
-  ('${fullname}', '${username}', 'no');
+  ('${fullname}', '${username}', '${password}', 'no');
 `);
 
 };
