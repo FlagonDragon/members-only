@@ -1,6 +1,7 @@
 const db = require("../db/queries");
 const bcrypt = require("bcryptjs");
 const { validationResult } = require("express-validator");
+const { use } = require("passport");
 
 function homeGet(req, res) {
 
@@ -35,7 +36,7 @@ async function signUpPost(req, res) {
         res.send(result.errors[0].msg);
 
         return;
-        
+
     }
 
     const hashedPassword = await bcrypt.hash(password, 10);
@@ -50,11 +51,37 @@ async function signUpPost(req, res) {
 
 };
 
+async function joinClubGet(req, res) {
+
+    res.render("joinClubView");
+
+};
+
+async function joinClubPost(req, res) {
+
+    const { username, passcode } = req.body;
+
+    console.log('USERNAME: '+username);
+    console.log('PASSCODE: '+passcode);
+    
+
+    if (passcode == 'eggnog') {
+        await db.joinClub(username);
+        console.log('SUCCESS!!!');
+        
+    }
+
+    res.redirect("/");
+
+};
+
 
 
 module.exports = {
     homeGet,
     infoGet,
     signUpGet,
-    signUpPost
+    signUpPost,
+    joinClubGet,
+    joinClubPost
 };

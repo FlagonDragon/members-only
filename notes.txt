@@ -12,3 +12,7 @@ VALUES
 
 ALTER TABLE userbase
 ADD password VARCHAR ( 255 );
+
+UPDATE userbase
+SET membership = 'yes'
+WHERE username = ${username};
