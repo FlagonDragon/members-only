@@ -6,6 +6,10 @@ const { body, validationResult } = require("express-validator");
 
 router.get("/", controller.homeGet);
 
+// router.post("/log-in", controller.logInPost);
+
+router.get("/log-out", controller.logOutGet);
+
 router.get("/info", controller.infoGet);
 
 router.get("/sign-up", controller.signUpGet);

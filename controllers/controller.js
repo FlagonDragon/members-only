@@ -1,11 +1,31 @@
 const db = require("../db/queries");
 const bcrypt = require("bcryptjs");
 const { validationResult } = require("express-validator");
-const { use } = require("passport");
 
 function homeGet(req, res) {
 
-    res.render("homeView");
+    res.render("homeView", { user: req.user });
+
+};
+
+// function logInPost(req, res) {
+
+//     passport.authenticate("local", {
+//         successRedirect: "/info",
+//         failureRedirect: "/info",
+//         failureMessage: true,
+//     })
+
+// };
+
+function logOutGet(req, res, next) {
+
+    req.logout((err) => {
+        if (err) {
+            return next(err);
+        }
+        res.redirect("/");
+    });
 
 };
 
@@ -79,6 +99,8 @@ async function joinClubPost(req, res) {
 
 module.exports = {
     homeGet,
+    // logInPost,
+    logOutGet,
     infoGet,
     signUpGet,
     signUpPost,
