@@ -1,28 +1,22 @@
-<html>
-
-  <head>
-      <title>My App</title>
-      <link type="text/css" href="/css/styles.css" rel="stylesheet">
-  </head>
-
-  <body>
-
-    <div class="container">
-
-      <h2>Info:</h2>
-
-      <% data.forEach(item => { %>
-
-          <p>
-            mydata: <%=item.mydata%> (id: <%=item.id%>)
-          </p>
-
-        </a>
-
-      <% }); %>
-
-    </div>
-    
-  </body>
-
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Log In</title>
+</head>
+<body>
+  <% if (locals.user) {%>
+    <h1>WELCOME BACK <%= user.username %></h1>
+    <a href="/log-out">LOG OUT</a>
+  <% } else { %>
+    <h1>Log in</h1>
+    <form action="/log-in" method="POST">
+      <label for="username">Email</label>
+      <input id="username" name="username" placeholder="email" type="text" />
+      <label for="password">Password</label>
+      <input id="password" name="password" placeholder="password" type="password" />
+      <button type="submit">Log In</button>
+    </form>
+  <%}%>
+</body>
 </html>
