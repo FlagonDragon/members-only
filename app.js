@@ -59,8 +59,8 @@ app.use("/", router);
 app.post(
   "/log-in",
   passport.authenticate("local", {
-    successRedirect: "/",
-    failureRedirect: "/",
+    successRedirect: "/log-in",
+    failureRedirect: "/log-in",
     failureMessage: true,
   })
 );

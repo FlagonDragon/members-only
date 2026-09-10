@@ -6,6 +6,7 @@ const { body, validationResult } = require("express-validator");
 
 router.get("/", controller.homeGet);
 
+router.get("/log-in", controller.logInGet);
 // router.post("/log-in", controller.logInPost);
 
 router.get("/log-out", controller.logOutGet);
@@ -17,6 +18,9 @@ router.post("/sign-up", body('passwordConfirmation').custom((value, { req }) => 
 
 router.get("/join-club", controller.joinClubGet);
 router.post("/join-club", controller.joinClubPost);
+
+router.get("/message", controller.messageGet);
+router.post("/message", controller.messagePost);
 
 
 

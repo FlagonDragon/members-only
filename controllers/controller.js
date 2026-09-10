@@ -8,6 +8,12 @@ function homeGet(req, res) {
 
 };
 
+function logInGet(req, res) {
+
+    res.render("logInView", { user: req.user });
+
+};
+
 // function logInPost(req, res) {
 
 //     passport.authenticate("local", {
@@ -24,7 +30,7 @@ function logOutGet(req, res, next) {
         if (err) {
             return next(err);
         }
-        res.redirect("/");
+        res.redirect("/log-in");
     });
 
 };
@@ -95,15 +101,29 @@ async function joinClubPost(req, res) {
 
 };
 
+function messageGet(req, res) {
 
+    res.render("messageView", { user: req.user });
+
+};
+
+
+function messagePost(req, res) {
+
+    res.redirect("/");
+
+};
 
 module.exports = {
     homeGet,
+    logInGet,
     // logInPost,
     logOutGet,
     infoGet,
     signUpGet,
     signUpPost,
     joinClubGet,
-    joinClubPost
+    joinClubPost,
+    messageGet,
+    messagePost,
 };
