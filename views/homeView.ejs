@@ -8,11 +8,30 @@
 
       <h1>Messages</h1> 
 
+      <% if (locals.user) {%>
+
+        <a href="/new-message">Create New Message</a>
+        <a href="/log-out">Log Out</a>
+
+      <% } else { %>
+
+        <a href="/log-in">Log In</a>
+
+      <%}%>
+
       <% messages.forEach(message => { %>
 
         <div>
+          
+          <% if (locals.user && locals.user.membership == 'yes') {%>
 
-          <%- include('message', { message: message }) %>
+            <%- include('memberMessage', { message: message }) %>
+
+          <% } else { %>
+
+            <%- include('message', { message: message }) %>
+
+          <%}%>
 
         </div>
 

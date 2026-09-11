@@ -6,12 +6,22 @@
 </head>
 <body>
   <h1>Create New Message</h1>
-  <form action="/new-message" method="POST">
-    <label for="title">Title</label>
-    <input id="title" name="title" placeholder="title" type="text" />
-    <label for="message">Message</label>
-    <textarea id="message" name="message"></textarea>
-    <button type="submit">Send</button>
-  </form>
+
+    <% if (locals.user) {%>
+
+      <form action="/new-message" method="POST">
+        <label for="title">Title</label>
+        <input id="title" name="title" placeholder="title" type="text" />
+        <label for="message">Message</label>
+        <textarea id="message" name="message"></textarea>
+        <button type="submit">Send</button>
+      </form>
+
+    <% } else { %>
+
+      <p>Must be logged in to create a message!</p>
+
+    <%}%>
+
 </body>
 </html>

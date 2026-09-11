@@ -65,7 +65,7 @@ async function signUpPost(req, res) {
 
     await db.insertUser(fullname, username, hashedPassword);
 
-    res.redirect("/");
+    res.redirect("/log-in");
 
 };
 
