@@ -75,10 +75,6 @@ async function signUpPost(req, res) {
 
     await db.insertUser(fullname, username, hashedPassword);
 
-    const data = await db.getData();
-
-    console.log(data);
-
     res.redirect("/");
 
 };
@@ -115,6 +111,8 @@ function newMessageGet(req, res) {
 
 
 function newMessagePost(req, res) {
+
+    
 
     res.redirect("/");
 

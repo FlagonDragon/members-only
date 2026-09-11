@@ -41,14 +41,21 @@ WHERE username = '${username}';
 
 async function getMessages() {
 
-  const { rows } = await pool.query(`SELECT * FROM testing
+  const { rows } = await pool.query(`SELECT * FROM messages
   `);
 
   return rows;
 
 };
 
+async function insertMessage(username, title, text) {
 
+  await pool.query(`INSERT INTO messages (username, title, text)
+VALUES 
+  ('${username}', '${title}', '${text}');
+  `);
+
+};
 
 module.exports = { 
   getData,

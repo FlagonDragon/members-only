@@ -26,3 +26,16 @@ CREATE TABLE testing (
 INSERT INTO testing (mytext)
 VALUES 
   ('hewwo');
+
+CREATE TABLE messages (
+   id INTEGER PRIMARY KEY GENERATED ALWAYS AS IDENTITY,
+   username VARCHAR ( 50 ),
+   title VARCHAR ( 50 ),
+   text VARCHAR ( 250 ),
+   timestamp TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
+
+INSERT INTO messages (username, title, text)
+VALUES 
+  ('jon@email.com', 'TITLE ONE', 'SALUTATIONS'),
+  ('jon@email.com', 'TITLE TWO', 'I BE MESSAGING');
