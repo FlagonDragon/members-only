@@ -56,6 +56,8 @@ passport.deserializeUser(async (id, done) => {
 
 app.use("/", router);
 
+//login route here because authenticate is not usable when exported
+
 app.post(
   "/log-in",
   passport.authenticate("local", {

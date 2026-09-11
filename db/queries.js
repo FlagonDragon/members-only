@@ -50,10 +50,15 @@ async function getMessages() {
 
 async function insertMessage(username, title, text) {
 
+//   await pool.query(`INSERT INTO messages (username, title, text)
+// VALUES 
+//   ('${username}', '${title}', '${text}');
+//   `);
+
   await pool.query(`INSERT INTO messages (username, title, text)
 VALUES 
-  ('${username}', '${title}', '${text}');
-  `);
+  ($1, $2, $3)
+  `, [username, title, text]);
 
 };
 
@@ -61,6 +66,7 @@ module.exports = {
   getData,
   insertUser,
   joinClub,
-  getMessages
+  getMessages,
+  insertMessage
 };
 

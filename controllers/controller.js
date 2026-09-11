@@ -20,18 +20,8 @@ function logInGet(req, res) {
 
 };
 
-// function logInPost(req, res) {
-
-//     passport.authenticate("local", {
-//         successRedirect: "/info",
-//         failureRedirect: "/info",
-//         failureMessage: true,
-//     })
-
-// };
-
 function logOutGet(req, res, next) {
-
+//req.logout is passport function to end session
     req.logout((err) => {
         if (err) {
             return next(err);
@@ -110,9 +100,11 @@ function newMessageGet(req, res) {
 };
 
 
-function newMessagePost(req, res) {
+async function newMessagePost(req, res) {
 
-    
+    const { title, message } = req.body;
+
+    await db.insertMessage(req.user.username, title, message);
 
     res.redirect("/");
 
@@ -121,7 +113,6 @@ function newMessagePost(req, res) {
 module.exports = {
     homeGet,
     logInGet,
-    // logInPost,
     logOutGet,
     infoGet,
     signUpGet,
