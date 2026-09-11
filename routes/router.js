@@ -19,8 +19,8 @@ router.post("/sign-up", body('passwordConfirmation').custom((value, { req }) => 
 router.get("/join-club", controller.joinClubGet);
 router.post("/join-club", controller.joinClubPost);
 
-router.get("/message", controller.messageGet);
-router.post("/message", controller.messagePost);
+router.get("/new-message", controller.newMessageGet);
+router.post("/new-message", controller.newMessagePost);
 
 
 

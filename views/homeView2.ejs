@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Log In</title>
+</head>
+<body>
+  <% if (locals.user) {%>
+    <h1>Homepage!!! <%= user.username %></h1>
+    <a href="/new-message">Create new message</a>
+  <% } else { %>
+    <h1>Homepage!!!</h1>
+  <%}%>
+
+</body>
+</html>

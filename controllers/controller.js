@@ -2,9 +2,15 @@ const db = require("../db/queries");
 const bcrypt = require("bcryptjs");
 const { validationResult } = require("express-validator");
 
-function homeGet(req, res) {
+async function homeGet(req, res) {
 
-    res.render("homeView", { user: req.user });
+    console.log(req.user);
+
+    const messages = await db.getMessages();
+
+    console.log(messages);
+    
+    res.render("homeView", { messages: messages, user: req.user});
 
 };
 
@@ -101,14 +107,14 @@ async function joinClubPost(req, res) {
 
 };
 
-function messageGet(req, res) {
+function newMessageGet(req, res) {
 
-    res.render("messageView", { user: req.user });
+    res.render("newMessageView", { user: req.user });
 
 };
 
 
-function messagePost(req, res) {
+function newMessagePost(req, res) {
 
     res.redirect("/");
 
@@ -124,6 +130,6 @@ module.exports = {
     signUpPost,
     joinClubGet,
     joinClubPost,
-    messageGet,
-    messagePost,
+    newMessageGet,
+    newMessagePost,
 };

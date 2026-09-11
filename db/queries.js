@@ -39,11 +39,21 @@ WHERE username = '${username}';
 
 };
 
+async function getMessages() {
+
+  const { rows } = await pool.query(`SELECT * FROM testing
+  `);
+
+  return rows;
+
+};
+
 
 
 module.exports = { 
   getData,
   insertUser,
-  joinClub
+  joinClub,
+  getMessages
 };
 

@@ -16,3 +16,13 @@ ADD password VARCHAR ( 255 );
 UPDATE userbase
 SET membership = 'yes'
 WHERE username = ${username};
+
+CREATE TABLE testing (
+   id INTEGER PRIMARY KEY GENERATED ALWAYS AS IDENTITY,
+   mytext VARCHAR ( 50 ),
+   mytimestamp TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+);
+
+INSERT INTO testing (mytext)
+VALUES 
+  ('hewwo');
