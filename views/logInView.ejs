@@ -7,9 +7,7 @@
 <body>
   <% if (locals.user) {%>
     <h1>WELCOME BACK <%= user.username %></h1>
-    <a href="/">View Messages</a>
-    <a href="/new-message">Create New Message</a>
-    <a href="/log-out">Log Out</a>
+    <a href="/">Home</a>
   <% } else { %>
     <h1>Log in</h1>
     <form action="/log-in" method="POST">

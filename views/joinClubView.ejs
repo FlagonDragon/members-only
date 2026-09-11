@@ -6,12 +6,24 @@
 </head>
 <body>
   <h1>Join the Club</h1>
-  <form action="/join-club" method="POST">
-    <label for="username">Email</label>
-    <input id="username" name="username" placeholder="email" type="text" />
-    <label for="passcode">Passcode</label>
-    <input id="passcode" name="passcode" placeholder="passcode" type="text" />
-    <button type="submit">Join</button>
-  </form>
+
+    <% if (locals.user && locals.user.membership == 'yes') {%>
+
+      <p>You are already a club member!</p>
+    
+    <% } else if (locals.user) { %>
+
+      <form action="/join-club" method="POST">
+        <label for="passcode">Passcode</label>
+        <input id="passcode" name="passcode" placeholder="passcode" type="text" />
+        <button type="submit">Join</button>
+      </form>
+
+    <% } else { %>
+      
+      <p>Must be logged in to access!</p>
+
+    <%}%>
+
 </body>
 </html>

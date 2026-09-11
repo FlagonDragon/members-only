@@ -1,3 +1,16 @@
+EJS if else
+
+<% if {%>
+
+
+
+<% } else { %>
+
+
+
+<%}%>
+
+
 CREATE TABLE userbase (
    id INTEGER PRIMARY KEY GENERATED ALWAYS AS IDENTITY,
    fullname VARCHAR ( 50 ),

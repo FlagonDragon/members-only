@@ -4,11 +4,11 @@ const { validationResult } = require("express-validator");
 
 async function homeGet(req, res) {
 
-    console.log(req.user);
+    // console.log(req.user);
 
     const messages = await db.getMessages();
 
-    console.log(messages);
+    // console.log(messages);
     
     res.render("homeView", { messages: messages, user: req.user});
 
@@ -26,7 +26,7 @@ function logOutGet(req, res, next) {
         if (err) {
             return next(err);
         }
-        res.redirect("/log-in");
+        res.redirect("/");
     });
 
 };
@@ -65,26 +65,22 @@ async function signUpPost(req, res) {
 
     await db.insertUser(fullname, username, hashedPassword);
 
-    res.redirect("/log-in");
+    res.redirect("/");
 
 };
 
 async function joinClubGet(req, res) {
 
-    res.render("joinClubView");
+    console.log(req.user);
+
+    res.render("joinClubView", { user: req.user });
 
 };
 
 async function joinClubPost(req, res) {
 
-    const { username, passcode } = req.body;
-
-    console.log('USERNAME: '+username);
-    console.log('PASSCODE: '+passcode);
-    
-
-    if (passcode == 'eggnog') {
-        await db.joinClub(username);
+    if (req.body.passcode == 'eggnog') {
+        await db.joinClub(req.user.username);
         console.log('SUCCESS!!!');
         
     }
