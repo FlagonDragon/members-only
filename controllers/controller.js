@@ -84,8 +84,8 @@ async function joinClubPost(req, res) {
     if (req.body.passcode == 'eggnog') status = 'yes';
 
     if (req.body.passcode == 'scotch') status = 'admin';
-
-    console.log(req.user.username, req.body.passcode, status);
+    
+    // username comes from cookie, passcode comes from form
     
     await db.joinClub(req.user.username, status);
 
@@ -110,6 +110,18 @@ async function newMessagePost(req, res) {
 
 };
 
+async function deleteMessageGet(req, res) {
+
+    console.log(req.params.id);
+
+    if (req.user.membership == 'admin') {
+        await db.deleteMessage(req.params.id);
+    } 
+
+    res.redirect("/");
+
+};
+
 module.exports = {
     homeGet,
     logInGet,
@@ -121,4 +133,5 @@ module.exports = {
     joinClubPost,
     newMessageGet,
     newMessagePost,
+    deleteMessageGet
 };

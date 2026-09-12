@@ -30,16 +30,8 @@
       <% messages.forEach(message => { %>
 
         <div>
-          
-          <% if (locals.user && locals.user.membership != 'no') {%>
 
-            <%- include('memberMessage', { message: message }) %>
-
-          <% } else { %>
-
-            <%- include('message', { message: message }) %>
-
-          <%}%>
+          <%- include('message', { message: message }) %>
 
         </div>
 

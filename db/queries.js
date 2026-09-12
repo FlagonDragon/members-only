@@ -32,11 +32,6 @@ SET membership = '${status}'
 WHERE username = '${username}';
   `);
 
-  const user = getUser(username);
-
-  console.log('UPDATED USER:');
-  console.log(user);
-
 };
 
 async function getMessages() {
@@ -62,11 +57,19 @@ VALUES
 
 };
 
+async function deleteMessage(id) {
+
+  await pool.query(`DELETE FROM messages WHERE id = ($1);
+  `, [id]);
+
+};
+
 module.exports = { 
   getData,
   insertUser,
   joinClub,
   getMessages,
-  insertMessage
+  insertMessage,
+  deleteMessage
 };
 

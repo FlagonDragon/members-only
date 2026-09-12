@@ -22,6 +22,6 @@ router.post("/join-club", controller.joinClubPost);
 router.get("/new-message", controller.newMessageGet);
 router.post("/new-message", controller.newMessagePost);
 
-
+router.get("/delete-message/:id", controller.deleteMessageGet);
 
 module.exports = router;

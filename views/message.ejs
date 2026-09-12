@@ -1,4 +1,17 @@
 <ul>
-    <li><%= message.title %></li>
-    <li><%= message.text %></li>
+    <% if (locals.user && locals.user.membership == 'admin') {%>
+        <li><%= message.username %></li>
+        <li><%= message.title %></li>
+        <li><%= message.text %></li>
+        <li><%= message.timestamp %></li>
+        <li><a href="/delete-message/<%= message.id %>">Delete message <%= message.id %></a></li>
+    <% } else if (locals.user && locals.user.membership == 'yes') { %>
+        <li><%= message.username %></li>
+        <li><%= message.title %></li>
+        <li><%= message.text %></li>
+        <li><%= message.timestamp %></li>
+    <% } else { %>
+        <li><%= message.title %></li>
+        <li><%= message.text %></li>
+    <%}%>
 </ul>
