@@ -5,8 +5,11 @@
   <title>Sign Up</title>
 </head>
 <body>
+
   <h1>Join the Club</h1>
-  
+
+  <%- include("partials/errors.ejs") %>
+
   <% if (locals.user) { %>
 
       <form action="/join-club" method="POST">
