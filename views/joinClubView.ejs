@@ -6,12 +6,8 @@
 </head>
 <body>
   <h1>Join the Club</h1>
-
-    <% if (locals.user && locals.user.membership == 'yes') {%>
-
-      <p>You are already a club member!</p>
-    
-    <% } else if (locals.user) { %>
+  
+  <% if (locals.user) { %>
 
       <form action="/join-club" method="POST">
         <label for="passcode">Passcode</label>

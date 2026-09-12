@@ -1,6 +1,6 @@
 <html>
   <head>
-      <title>Index</title>
+      <title>Home</title>
   </head>
   <body>
 
@@ -8,7 +8,7 @@
 
       <h1>Messages</h1> 
 
-      <% if (locals.user && locals.user.membership == 'yes') {%>
+      <% if (locals.user && locals.user.membership != 'no') {%>
 
         <a href="/new-message">Create New Message</a>
         <a href="/join-club">Join the Club</a>
@@ -31,7 +31,7 @@
 
         <div>
           
-          <% if (locals.user && locals.user.membership == 'yes') {%>
+          <% if (locals.user && locals.user.membership != 'no') {%>
 
             <%- include('memberMessage', { message: message }) %>
 

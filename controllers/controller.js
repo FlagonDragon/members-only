@@ -79,11 +79,15 @@ async function joinClubGet(req, res) {
 
 async function joinClubPost(req, res) {
 
-    if (req.body.passcode == 'eggnog') {
-        await db.joinClub(req.user.username);
-        console.log('SUCCESS!!!');
-        
-    }
+    let status;
+
+    if (req.body.passcode == 'eggnog') status = 'yes';
+
+    if (req.body.passcode == 'scotch') status = 'admin';
+
+    console.log(req.user.username, req.body.passcode, status);
+    
+    await db.joinClub(req.user.username, status);
 
     res.redirect("/");
 

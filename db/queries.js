@@ -25,10 +25,10 @@ async function insertUser(fullname, username, password) {
 
 };
 
-async function joinClub(username) {
+async function joinClub(username, status) {
 
   await pool.query(`UPDATE userbase
-SET membership = 'yes'
+SET membership = '${status}'
 WHERE username = '${username}';
   `);
 
