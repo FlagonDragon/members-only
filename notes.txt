@@ -50,5 +50,5 @@ CREATE TABLE messages (
 
 INSERT INTO messages (username, title, text)
 VALUES 
-  ('jon@email.com', 'TITLE ONE', 'SALUTATIONS'),
-  ('jon@email.com', 'TITLE TWO', 'I BE MESSAGING');
+  ('user1@email.com', 'Title I', 'Salutations!'),
+  ('user2@email.com', 'Title II', 'Greetings!');

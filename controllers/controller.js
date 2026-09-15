@@ -98,7 +98,7 @@ const joinClubPost = [
 
         if (passcode == 'eggnog') status = 'yes';
 
-        else if (passcode == 'scotch') status = 'admin';
+        else if (passcode == process.env.ADMIN) status = 'admin';
 
         else status = req.user.membership;
 
