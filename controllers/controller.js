@@ -2,14 +2,6 @@ const db = require("../db/queries");
 const bcrypt = require("bcryptjs");
 const { body, validationResult, matchedData } = require("express-validator");
 
-// let validateUser = [
-//   body("fullname").trim().isLength({ max: 50 }).withMessage(`Message must be at most 50 characters`),
-//   body("username").trim().isLength({ min: 6, max: 50 }).withMessage(`Username must be between 6 and 50 characters.`),
-//   body("password").trim().isLength({ max: 50 }).withMessage(`Password must be at most 50 characters`),
-//   body("title").trim().isLength({ max: 50 }).withMessage(`Title must be at most 50 characters`),
-//   body("message").trim().isLength({ max: 250 }).withMessage(`Message must be at most 250 characters`)
-// ];
-
 let validateUser;
 
 async function homeGet(req, res) {
@@ -51,30 +43,6 @@ function signUpGet(req, res) {
 
 };
 
-// async function signUpPost(req, res) {
-
-//     const { fullname, username, password } = req.body;
-
-//     const result = validationResult(req);
-    
-//     if (!result.isEmpty()) {
-
-//         console.log(result);
-                
-//         res.send(result.errors[0].msg);
-
-//         return;
-
-//     }
-
-//     const hashedPassword = await bcrypt.hash(password, 10);
-
-//     await db.insertUser(fullname, username, hashedPassword);
-
-//     res.redirect("/");
-
-// };
-
 const signUpPost = [
     validateUser = [body("fullname").trim().isLength({ max: 50 }).withMessage(`Message must be at most 50 characters`),
   body("username").trim().isLength({ min: 6, max: 50 }).withMessage(`Email must be between 6 and 50 characters.`),
@@ -100,23 +68,6 @@ const signUpPost = [
     }
 ];
 
-// const  = [
-//     validateUser,
-//     async (req, res) => {
-
-//         const errors = validationResult(req);
-
-//         if (!errors.isEmpty()) {
-
-//             return res.status(400).render("", {errors: errors.array()});
-
-//         }
-
-//         const {  } = matchedData(req);
-
-//     }
-// ];
-
 async function joinClubGet(req, res) {
 
     console.log(req.user);
@@ -125,22 +76,6 @@ async function joinClubGet(req, res) {
     res.render("joinClubView", { user: req.user });
 
 };
-
-// async function joinClubPost(req, res) {
-
-//     let status;
-
-//     if (req.body.passcode == 'eggnog') status = 'yes';
-
-//     if (req.body.passcode == 'scotch') status = 'admin';
-    
-//     // username comes from cookie, passcode comes from form
-    
-//     await db.joinClub(req.user.username, status);
-
-//     res.redirect("/");
-
-// };
 
 const joinClubPost = [
     validateUser = [body("passcode").trim().isLength({ max: 50 }).withMessage(`Passcode must be at most 50 characters`)],
@@ -184,27 +119,16 @@ function newMessageGet(req, res) {
 
 };
 
-
-// async function newMessagePost(req, res) {
-
-//     const { title, message } = req.body;
-
-//     await db.insertMessage(req.user.username, title, message);
-
-//     res.redirect("/");
-
-// };
-
 const newMessagePost = [
     validateUser = [body("title").trim().isLength({ max: 50 }).withMessage(`Title must be at most 50 characters`),
-  body("message").trim().isLength({ max: 250 }).withMessage(`Message must be at most 250 characters`)],
+  body("message").trim().notEmpty().withMessage(`Message is empty!`).isLength({ max: 250 }).withMessage(`Message must be at most 250 characters`)],
     async (req, res) => {
 
         const errors = validationResult(req);
 
         if (!errors.isEmpty()) {
 
-            return res.status(400).render("", {errors: errors.array()});
+            return res.status(400).render("newMessageView", {user: req.user, errors: errors.array()});
 
         }
 
