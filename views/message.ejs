@@ -1,17 +1,29 @@
-<ul>
+<div class="msgDiv">
     <% if (locals.user && locals.user.membership == 'admin') {%>
-        <li><%= message.username %></li>
-        <li><%= message.title %></li>
-        <li><%= message.text %></li>
-        <li><%= message.timestamp %></li>
-        <li><a href="/delete-message/<%= message.id %>">Delete message <%= message.id %></a></li>
+        <div class="msgTop">
+            <h3><%= message.title %></h3>
+            <p><%= message.text %></p>
+        </div>
+        <p>&nbsp;</p>
+        <div class="msgBot">
+            <p>By: <%= message.username %></p>
+            <p>Posted: <%= message.timestamp %></p>
+            <p><a href="/delete-message/<%= message.id %>">Delete message</a></p>
+        </div>
     <% } else if (locals.user && locals.user.membership == 'yes') { %>
-        <li><%= message.username %></li>
-        <li><%= message.title %></li>
-        <li><%= message.text %></li>
-        <li><%= message.timestamp %></li>
+        <div class="msgTop">
+            <h3><%= message.title %></h3>
+            <p><%= message.text %></p>
+        </div>
+        <p>&nbsp;</p>
+        <div class="msgBot">
+            <p>By: <%= message.username %></p>
+            <p>Posted: <%= message.timestamp %></p>
+        </div>
     <% } else { %>
-        <li><%= message.title %></li>
-        <li><%= message.text %></li>
+        <div class="msgTop">
+            <h3><%= message.title %></h3>
+            <p><%= message.text %></p>
+        </div>
     <%}%>
-</ul>
+</div>
